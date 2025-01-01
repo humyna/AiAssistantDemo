@@ -4,6 +4,7 @@
 jdk1.8
 
 # 项目分层
+```angular2html
 common
 |----config
 |----extend
@@ -15,3 +16,4 @@ service
 |------------impl
 api
 |----api
+```
