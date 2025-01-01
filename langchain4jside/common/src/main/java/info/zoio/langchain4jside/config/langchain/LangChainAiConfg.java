@@ -1,4 +1,4 @@
-package info.zoio.langchain4jside.ai.config;
+package info.zoio.langchain4jside.config.langchain;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSplitter;
@@ -16,7 +16,7 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
-import info.zoio.langchain4jside.ai.agent.AssistantAgent;
+import info.zoio.langchain4jside.extend.langchain.agent.AssistantAgent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -33,7 +33,7 @@ import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
  * @author humyna
  */
 @Configuration
-public class AiConfig {
+public class LangChainAiConfg {
 
     @Bean
     AssistantAgent createAssitant(ChatLanguageModel chatLanguageModel,

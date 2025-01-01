@@ -1,6 +1,6 @@
 package info.zoio.langchain4jside.api;
 
-import info.zoio.langchain4jside.ai.agent.AssistantAgent;
+import info.zoio.langchain4jside.extend.langchain.agent.AssistantAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

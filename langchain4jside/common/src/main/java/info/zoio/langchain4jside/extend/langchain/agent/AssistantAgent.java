@@ -1,4 +1,4 @@
-package info.zoio.langchain4jside.ai.agent;
+package info.zoio.langchain4jside.extend.langchain.agent;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;

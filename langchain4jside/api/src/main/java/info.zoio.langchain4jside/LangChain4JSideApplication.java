@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2024/11/29 10:00
  */
 @SpringBootApplication
-public class Langchain4jsideApplication {
+public class LangChain4JSideApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Langchain4jsideApplication.class, args);
+        SpringApplication.run(LangChain4JSideApplication.class, args);
     }
 }
