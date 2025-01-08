@@ -30,6 +30,7 @@
     <mybatis-plus-boot-starter.version>3.5.4.1</mybatis-plus-boot-starter.version>
     <mybatis.plus.dynamic.version>4.2.0</mybatis.plus.dynamic.version>
     <mybatis-plus-join-boot-starter.version>1.4.4.1</mybatis-plus-join-boot-starter.version>
+    <h2.version>2.1.214</h2.version>
   </properties>
 
   <dependencyManagement>
@@ -58,6 +59,11 @@
         <version>${lombok.version}</version>
         <scope>provided</scope>
       </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -85,6 +91,10 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
   </dependencies>
 
