@@ -5,6 +5,7 @@ import dev.langchain4j.data.document.DocumentSplitter;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
@@ -17,6 +18,8 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import info.zoio.langchain4jside.extend.langchain.agent.AssistantAgent;
+import info.zoio.langchain4jside.extend.langchain.store.DbChatMemoryStore;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -34,14 +37,24 @@ import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
  */
 @Configuration
 public class LangChainAiConfg {
+    @Autowired
+    DbChatMemoryStore dbChatMemoryStore;
 
     @Bean
     AssistantAgent createAssitant(ChatLanguageModel chatLanguageModel,
                                   Retriever<TextSegment> retriever) {
+        ChatMemoryProvider chatMemoryProvider =
+                memoryId ->
+                        MessageWindowChatMemory.builder()
+                                .id(memoryId)
+                                .maxMessages(10)
+                                .chatMemoryStore(dbChatMemoryStore)
+                                .build();
         return AiServices.builder(AssistantAgent.class)
                 .chatLanguageModel(chatLanguageModel)
-                .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
-                .retriever(retriever)
+//                .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
+                .chatMemoryProvider(chatMemoryProvider)
+//                .retriever(retriever)
                 .build();
     }
 

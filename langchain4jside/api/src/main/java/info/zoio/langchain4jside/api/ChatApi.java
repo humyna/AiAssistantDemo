@@ -1,6 +1,6 @@
 package info.zoio.langchain4jside.api;
 
-import info.zoio.langchain4jside.extend.langchain.agent.AssistantAgent;
+import info.zoio.langchain4jside.business.chat.service.ChatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/ai")
 public class ChatApi {
     @Autowired
-    AssistantAgent agent;
+    ChatService chatService;
 
     @GetMapping("/demo")
     public String demo(){
@@ -24,14 +24,14 @@ public class ChatApi {
     @PostMapping(value="/chat", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String chat(@RequestParam("message") String message,
-                                 @RequestParam("saleNo") String saleNo){
+                                 @RequestParam("userId") String userId){
         try {
             long start = System.currentTimeMillis();
-            String answer = agent.chat(saleNo,message);
-            log.info("/chat use = {} ms,params: saleNo={},message={}",System.currentTimeMillis() - start,saleNo,message);
+            String answer = chatService.chat(userId,message);
+            log.info("/chat use = {} ms,params: userId={},message={}",System.currentTimeMillis() - start,userId,message);
             return  answer;
         } catch (Exception e) {
-            log.error("/chat error,params: saleNo={},message={}",saleNo,message, e);
+            log.error("/chat error,params: userId={},message={}",userId,message, e);
             return  "处理失败";
         }
     }
