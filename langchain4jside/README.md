@@ -25,3 +25,8 @@ service
 api
 |----api
 ```
+
+# 项目说明
+系统启动后，会自动创建数据库表，并初始化数据。
+h2 数据库访问地址：http://localhost:8080/langchain4jside/h2
+root/root
