@@ -70,7 +70,7 @@ public class DbChatMemoryStore implements ChatMemoryStore {
                                 , ChatMessageType roleType) {
         try {
             String roleTypeName = roleType.name();
-            if (Objects.nonNull(messageSourceType)) {
+            if (messageSourceType != 0) {
                 //用户与AI会话的初始语料
                 roleTypeName = roleTypeName.concat("_QUESTION");
             }
