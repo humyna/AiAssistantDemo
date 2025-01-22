@@ -1,4 +1,4 @@
-package info.zoio.langchain4jside.extend.langchain.agent;
+package info.zoio.langchain4jside.extend.langchain.enums;
 
 import java.util.Arrays;
 import java.util.Map;

@@ -8,6 +8,7 @@ import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
@@ -18,6 +19,7 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import info.zoio.langchain4jside.extend.langchain.agent.AssistantAgent;
+import info.zoio.langchain4jside.extend.langchain.agent.AssistantStream;
 import info.zoio.langchain4jside.extend.langchain.store.DbChatMemoryStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +57,19 @@ public class LangChainAiConfg {
 //                .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
                 .chatMemoryProvider(chatMemoryProvider)
 //                .retriever(retriever)
+                .build();
+    }
+
+    @Bean
+    AssistantStream createStreamAssistant(StreamingChatLanguageModel streamingChatLanguageModel){
+        ChatMemoryProvider chatMemoryProvider = memoryId -> MessageWindowChatMemory.builder()
+                .id(memoryId)
+                .maxMessages(10)
+                .chatMemoryStore(dbChatMemoryStore)
+                .build();
+        return AiServices.builder(AssistantStream.class)
+                .streamingChatLanguageModel(streamingChatLanguageModel)
+                .chatMemoryProvider(chatMemoryProvider)
                 .build();
     }
 

@@ -4,6 +4,7 @@ import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
+import info.zoio.langchain4jside.extend.langchain.enums.AiBusinessTypeEnum;
 
 /**
  *
