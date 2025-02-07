@@ -19,8 +19,9 @@ public class ChatApi {
     ChatService chatService;
 
     @GetMapping("/demo")
-    public String demo(){
-        return "hello ai";
+    public String demo(@RequestParam("message") String message,
+                       @RequestParam("userId") String userId){
+        return chatService.chatDemo(userId,message);
     }
 
     @PostMapping(value="/chat", produces = "application/json;charset=utf-8")

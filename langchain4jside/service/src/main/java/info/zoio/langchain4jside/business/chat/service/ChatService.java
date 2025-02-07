@@ -7,6 +7,8 @@ package info.zoio.langchain4jside.business.chat.service;
  * @date 2025/01/20 15:33
  */
 public interface ChatService {
+    String chatDemo(String userId, String message);
+
     /**
     * 阻塞式输出聊天接口
      *

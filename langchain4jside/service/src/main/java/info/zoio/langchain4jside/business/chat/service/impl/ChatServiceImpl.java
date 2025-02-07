@@ -31,6 +31,11 @@ public class ChatServiceImpl implements ChatService {
     DbChatMemoryStore dbChatMemoryStore;
 
     @Override
+    public String chatDemo(String userId, String message) {
+        return agent.chat(userId, userId, message);
+    }
+
+    @Override
     public String chat(String userId, String message) {
         log.info("chat start,userId={},message={}",userId,message);
         String answer;
