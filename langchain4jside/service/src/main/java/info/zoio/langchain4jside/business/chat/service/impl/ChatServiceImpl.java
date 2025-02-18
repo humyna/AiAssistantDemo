@@ -32,7 +32,10 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public String chatDemo(String userId, String message) {
-        return agent.chat(userId, userId, message);
+        String answer = agent.chat(userId, userId, message);
+        //remove memory demo
+        dbChatMemoryStore.deleteMessages(userId);
+        return answer;
     }
 
     @Override
@@ -69,6 +72,8 @@ public class ChatServiceImpl implements ChatService {
             case OTHER:
                 long otherStart = System.currentTimeMillis();
                 answer = agent.chat(businessCxtId, userId, message);
+                //remove memory
+//                dbChatMemoryStore.deleteMessages(businessCxtId);
                 log.info("chat other use = {} ms, userId = {}", System.currentTimeMillis() - otherStart, userId);
                 break;
             default:
